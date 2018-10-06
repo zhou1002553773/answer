@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.answer.framework.userInfo.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.answer.framework.userInfo.model.UserInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+    <result column="user_age" property="userAge" jdbcType="VARCHAR" />
+    <result column="user_gender" property="userGender" jdbcType="VARCHAR" />
+    <result column="user_mobile" property="userMobile" jdbcType="VARCHAR" />
+    <result column="user_logo" property="userLogo" jdbcType="VARCHAR" />
+    <result column="user_login_account" property="userLoginAccount" jdbcType="VARCHAR" />
+    <result column="user_login_password" property="userLoginPassword" jdbcType="VARCHAR" />
+    <result column="user_wechat_id" property="userWechatId" jdbcType="VARCHAR" />
+    <result column="user_wechat_logo" property="userWechatLogo" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_qq" property="userQq" jdbcType="VARCHAR" />
+    <result column="user_sina_microblog" property="userSinaMicroblog" jdbcType="VARCHAR" />
+    <result column="user_status" property="userStatus" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_code, user_name, user_nickname, user_age, user_gender, user_mobile, user_logo, 
+    user_login_account, user_login_password, user_wechat_id, user_wechat_logo, user_email, 
+    user_qq, user_sina_microblog, user_status, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.answer.framework.userInfo.model.UserInfo" >
+    insert into user_info (id, user_code, user_name, 
+      user_nickname, user_age, user_gender, 
+      user_mobile, user_logo, user_login_account, 
+      user_login_password, user_wechat_id, user_wechat_logo, 
+      user_email, user_qq, user_sina_microblog, 
+      user_status, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userNickname,jdbcType=VARCHAR}, #{userAge,jdbcType=VARCHAR}, #{userGender,jdbcType=VARCHAR}, 
+      #{userMobile,jdbcType=VARCHAR}, #{userLogo,jdbcType=VARCHAR}, #{userLoginAccount,jdbcType=VARCHAR}, 
+      #{userLoginPassword,jdbcType=VARCHAR}, #{userWechatId,jdbcType=VARCHAR}, #{userWechatLogo,jdbcType=VARCHAR}, 
+      #{userEmail,jdbcType=VARCHAR}, #{userQq,jdbcType=VARCHAR}, #{userSinaMicroblog,jdbcType=VARCHAR}, 
+      #{userStatus,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.answer.framework.userInfo.model.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userCode != null" >
+        user_code,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userNickname != null" >
+        user_nickname,
+      </if>
+      <if test="userAge != null" >
+        user_age,
+      </if>
+      <if test="userGender != null" >
+        user_gender,
+      </if>
+      <if test="userMobile != null" >
+        user_mobile,
+      </if>
+      <if test="userLogo != null" >
+        user_logo,
+      </if>
+      <if test="userLoginAccount != null" >
+        user_login_account,
+      </if>
+      <if test="userLoginPassword != null" >
+        user_login_password,
+      </if>
+      <if test="userWechatId != null" >
+        user_wechat_id,
+      </if>
+      <if test="userWechatLogo != null" >
+        user_wechat_logo,
+      </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
+      <if test="userQq != null" >
+        user_qq,
+      </if>
+      <if test="userSinaMicroblog != null" >
+        user_sina_microblog,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null" >
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        #{userAge,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null" >
+        #{userGender,jdbcType=VARCHAR},
+      </if>
+      <if test="userMobile != null" >
+        #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userLogo != null" >
+        #{userLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginAccount != null" >
+        #{userLoginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginPassword != null" >
+        #{userLoginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userWechatId != null" >
+        #{userWechatId,jdbcType=VARCHAR},
+      </if>
+      <if test="userWechatLogo != null" >
+        #{userWechatLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null" >
+        #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userSinaMicroblog != null" >
+        #{userSinaMicroblog,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.answer.framework.userInfo.model.UserInfo" >
+    update user_info
+    <set >
+      <if test="userCode != null" >
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null" >
+        user_nickname = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        user_age = #{userAge,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null" >
+        user_gender = #{userGender,jdbcType=VARCHAR},
+      </if>
+      <if test="userMobile != null" >
+        user_mobile = #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userLogo != null" >
+        user_logo = #{userLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginAccount != null" >
+        user_login_account = #{userLoginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginPassword != null" >
+        user_login_password = #{userLoginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userWechatId != null" >
+        user_wechat_id = #{userWechatId,jdbcType=VARCHAR},
+      </if>
+      <if test="userWechatLogo != null" >
+        user_wechat_logo = #{userWechatLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null" >
+        user_qq = #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userSinaMicroblog != null" >
+        user_sina_microblog = #{userSinaMicroblog,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.answer.framework.userInfo.model.UserInfo" >
+    update user_info
+    set user_code = #{userCode,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_nickname = #{userNickname,jdbcType=VARCHAR},
+      user_age = #{userAge,jdbcType=VARCHAR},
+      user_gender = #{userGender,jdbcType=VARCHAR},
+      user_mobile = #{userMobile,jdbcType=VARCHAR},
+      user_logo = #{userLogo,jdbcType=VARCHAR},
+      user_login_account = #{userLoginAccount,jdbcType=VARCHAR},
+      user_login_password = #{userLoginPassword,jdbcType=VARCHAR},
+      user_wechat_id = #{userWechatId,jdbcType=VARCHAR},
+      user_wechat_logo = #{userWechatLogo,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_qq = #{userQq,jdbcType=VARCHAR},
+      user_sina_microblog = #{userSinaMicroblog,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--zyh-->
+  <resultMap id="UserInfoRespVOMap" type="com.answer.framework.userInfo.form.UserInfoRespVO">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+    <result column="user_age" property="userAge" jdbcType="VARCHAR" />
+    <result column="user_gender" property="userGender" jdbcType="VARCHAR" />
+    <result column="user_mobile" property="userMobile" jdbcType="VARCHAR" />
+    <result column="user_logo" property="userLogo" jdbcType="VARCHAR" />
+    <result column="user_login_account" property="userLoginAccount" jdbcType="VARCHAR" />
+    <result column="user_login_password" property="userLoginPassword" jdbcType="VARCHAR" />
+    <result column="user_wechat_id" property="userWechatId" jdbcType="VARCHAR" />
+    <result column="user_wechat_logo" property="userWechatLogo" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_qq" property="userQq" jdbcType="VARCHAR" />
+    <result column="user_sina_microblog" property="userSinaMicroblog" jdbcType="VARCHAR" />
+    <result column="user_status" property="userStatus" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="user_logo_path" property="userLogoPath" jdbcType="VARCHAR" />
+    <result column="user_wechat_logo_path" property="userWechatLogoPath" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="selectByUserCode" parameterType="java.lang.String" resultMap="UserInfoRespVOMap">
+    select ui.*,fi.file_path
+    from user_info ui
+    left join file_info fi on ui.user_logo = fi.file_code
+    where ui.user_code = #{userCode,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByAccount" parameterType="com.answer.framework.userInfo.model.UserInfo" resultMap="UserInfoRespVOMap">
+    select ui.*,fi.file_path
+    from user_info ui
+    left join file_info fi on ui.user_logo = fi.file_code
+    where user_login_account = #{userLoginAccount}
+    and user_login_password = #{userLoginPassword}
+  </select>
+</mapper>
