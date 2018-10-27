@@ -1,4 +1,4 @@
-package com.answer.framework.platform;
+package com.answer.framework.plantform;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AnswerServiceApplicationTests {
+public class AnswerPlantformApplicationTests {
 
     @Test
     public void contextLoads() {

@@ -1,10 +1,9 @@
-package com.answer.framework.platform.configuration;
+package com.answer.framework.plantform.configuration;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 /**

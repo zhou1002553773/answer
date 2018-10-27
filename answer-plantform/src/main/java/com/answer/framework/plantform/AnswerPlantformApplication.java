@@ -1,4 +1,4 @@
-package com.answer.framework.platform;
+package com.answer.framework.plantform;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor;

@@ -4,15 +4,13 @@ import com.answer.framework.userInfo.model.UserInfo;
 
 import java.util.List;
 
-public class UserInfoRespVO extends UserInfo {
+public class UserInfoResp extends UserInfo {
 
     private String userLogoPath;
 
     private String userWechatLogoPath;
 
-    private List<String>  strings;
-
-    public UserInfoRespVO() {
+    public UserInfoResp() {
     }
 
     public String getUserLogoPath() {
@@ -31,11 +29,4 @@ public class UserInfoRespVO extends UserInfo {
         this.userWechatLogoPath = userWechatLogoPath;
     }
 
-    public List<String> getStrings() {
-        return strings;
-    }
-
-    public void setStrings(List<String> strings) {
-        this.strings = strings;
-    }
 }

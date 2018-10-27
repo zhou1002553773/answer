@@ -1,4 +1,4 @@
-package com.answer.framework.platform;
+package com.answer.framework.plantform;
 
 import com.answer.framework.util.MD5Utils;
 import org.junit.Test;

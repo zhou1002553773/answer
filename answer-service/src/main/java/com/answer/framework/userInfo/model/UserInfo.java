@@ -186,4 +186,5 @@ public class UserInfo {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
 }

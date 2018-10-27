@@ -1,4 +1,4 @@
-package com.answer.framework.platform.configuration;
+package com.answer.framework.plantform.configuration;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;

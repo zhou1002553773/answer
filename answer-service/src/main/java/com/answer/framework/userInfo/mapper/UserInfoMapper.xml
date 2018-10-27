@@ -247,7 +247,7 @@
   </update>
 
   <!--zyh-->
-  <resultMap id="UserInfoRespVOMap" type="com.answer.framework.userInfo.form.UserInfoRespVO">
+  <resultMap id="UserInfoRespMap" type="com.answer.framework.userInfo.form.UserInfoResp">
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="user_code" property="userCode" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -270,14 +270,14 @@
     <result column="user_wechat_logo_path" property="userWechatLogoPath" jdbcType="VARCHAR" />
   </resultMap>
 
-  <select id="selectByUserCode" parameterType="java.lang.String" resultMap="UserInfoRespVOMap">
+  <select id="selectByUserCode" parameterType="java.lang.String" resultMap="UserInfoRespMap">
     select ui.*,fi.file_path
     from user_info ui
     left join file_info fi on ui.user_logo = fi.file_code
     where ui.user_code = #{userCode,jdbcType=VARCHAR}
   </select>
 
-  <select id="selectByAccount" parameterType="com.answer.framework.userInfo.model.UserInfo" resultMap="UserInfoRespVOMap">
+  <select id="selectByAccount" parameterType="com.answer.framework.userInfo.model.UserInfo" resultMap="UserInfoRespMap">
     select ui.*,fi.file_path
     from user_info ui
     left join file_info fi on ui.user_logo = fi.file_code

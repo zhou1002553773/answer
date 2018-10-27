@@ -1,7 +1,7 @@
 package com.answer.framework.userInfo.service.impl;
 
 import com.answer.framework.common.config.ConfigConstant;
-import com.answer.framework.userInfo.form.UserInfoRespVO;
+import com.answer.framework.userInfo.form.UserInfoResp;
 import com.answer.framework.userInfo.mapper.UserInfoMapper;
 import com.answer.framework.userInfo.model.UserInfo;
 import com.answer.framework.userInfo.service.UserInfoService;
@@ -18,6 +18,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Resource
     private UserInfoMapper userInfoMapper;
 
+    /**
+     * 保存用户信息
+     * @param record
+     * @return
+     * @throws Exception
+     */
     @Override
     public String saveUserInfo(UserInfo record) throws Exception{
         String userCode = "User" + SerialNoUtils.getSerialNo();
@@ -29,13 +35,25 @@ public class UserInfoServiceImpl implements UserInfoService {
         return userCode;
     }
 
+    /**
+     * 根据userCode查询
+     * @param userCode
+     * @return
+     * @throws Exception
+     */
     @Override
-    public UserInfoRespVO selectByUserCode(String userCode) throws Exception {
+    public UserInfoResp selectByUserCode(String userCode) throws Exception {
         return userInfoMapper.selectByUserCode(userCode);
     }
 
+    /**
+     * 根据账号密码查询
+     * @param userInfo
+     * @return
+     * @throws Exception
+     */
     @Override
-    public UserInfoRespVO selectByAccount(UserInfo userInfo) throws Exception {
+    public UserInfoResp selectByAccount(UserInfo userInfo) throws Exception {
         String pass = MD5Utils.encodingMd5(userInfo.getUserLoginPassword(), userInfo.getUserLoginAccount());
         System.out.printf(pass);
         userInfo.setUserLoginPassword(pass);

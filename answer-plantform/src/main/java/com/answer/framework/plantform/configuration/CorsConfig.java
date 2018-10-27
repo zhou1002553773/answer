@@ -1,4 +1,4 @@
-package com.answer.framework.platform.configuration;
+package com.answer.framework.plantform.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
