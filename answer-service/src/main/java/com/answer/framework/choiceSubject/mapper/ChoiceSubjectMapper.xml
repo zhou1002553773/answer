@@ -9,13 +9,15 @@
     <result column="subject_type" property="subjectType" jdbcType="VARCHAR" />
     <result column="subject_level" property="subjectLevel" jdbcType="INTEGER" />
     <result column="subject_provider" property="subjectProvider" jdbcType="VARCHAR" />
+    <result column="subject_purpose_code" property="subjectPurposeCode" jdbcType="VARCHAR" />
     <result column="subject_create_time" property="subjectCreateTime" jdbcType="TIMESTAMP" />
     <result column="subject_update_time" property="subjectUpdateTime" jdbcType="TIMESTAMP" />
     <result column="subject_status" property="subjectStatus" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, subject_code, subject_content, subject_correct, subject_type, subject_level, 
-    subject_provider, subject_create_time, subject_update_time, subject_status
+    subject_provider, subject_purpose_code, subject_create_time, subject_update_time, 
+    subject_status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -30,12 +32,12 @@
   <insert id="insert" parameterType="com.answer.framework.choiceSubject.model.ChoiceSubject" >
     insert into choice_subject (id, subject_code, subject_content, 
       subject_correct, subject_type, subject_level, 
-      subject_provider, subject_create_time, subject_update_time, 
-      subject_status)
+      subject_provider, subject_purpose_code, subject_create_time, 
+      subject_update_time, subject_status)
     values (#{id,jdbcType=BIGINT}, #{subjectCode,jdbcType=VARCHAR}, #{subjectContent,jdbcType=VARCHAR}, 
       #{subjectCorrect,jdbcType=VARCHAR}, #{subjectType,jdbcType=VARCHAR}, #{subjectLevel,jdbcType=INTEGER}, 
-      #{subjectProvider,jdbcType=VARCHAR}, #{subjectCreateTime,jdbcType=TIMESTAMP}, #{subjectUpdateTime,jdbcType=TIMESTAMP}, 
-      #{subjectStatus,jdbcType=CHAR})
+      #{subjectProvider,jdbcType=VARCHAR}, #{subjectPurposeCode,jdbcType=VARCHAR}, #{subjectCreateTime,jdbcType=TIMESTAMP}, 
+      #{subjectUpdateTime,jdbcType=TIMESTAMP}, #{subjectStatus,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.answer.framework.choiceSubject.model.ChoiceSubject" >
     insert into choice_subject
@@ -60,6 +62,9 @@
       </if>
       <if test="subjectProvider != null" >
         subject_provider,
+      </if>
+      <if test="subjectPurposeCode != null" >
+        subject_purpose_code,
       </if>
       <if test="subjectCreateTime != null" >
         subject_create_time,
@@ -93,6 +98,9 @@
       <if test="subjectProvider != null" >
         #{subjectProvider,jdbcType=VARCHAR},
       </if>
+      <if test="subjectPurposeCode != null" >
+        #{subjectPurposeCode,jdbcType=VARCHAR},
+      </if>
       <if test="subjectCreateTime != null" >
         #{subjectCreateTime,jdbcType=TIMESTAMP},
       </if>
@@ -125,6 +133,9 @@
       <if test="subjectProvider != null" >
         subject_provider = #{subjectProvider,jdbcType=VARCHAR},
       </if>
+      <if test="subjectPurposeCode != null" >
+        subject_purpose_code = #{subjectPurposeCode,jdbcType=VARCHAR},
+      </if>
       <if test="subjectCreateTime != null" >
         subject_create_time = #{subjectCreateTime,jdbcType=TIMESTAMP},
       </if>
@@ -145,6 +156,7 @@
       subject_type = #{subjectType,jdbcType=VARCHAR},
       subject_level = #{subjectLevel,jdbcType=INTEGER},
       subject_provider = #{subjectProvider,jdbcType=VARCHAR},
+      subject_purpose_code = #{subjectPurposeCode,jdbcType=VARCHAR},
       subject_create_time = #{subjectCreateTime,jdbcType=TIMESTAMP},
       subject_update_time = #{subjectUpdateTime,jdbcType=TIMESTAMP},
       subject_status = #{subjectStatus,jdbcType=CHAR}
@@ -159,6 +171,7 @@
     <result column="subject_type" property="subjectType" jdbcType="VARCHAR" />
     <result column="subject_level" property="subjectLevel" jdbcType="INTEGER" />
     <result column="subject_provider" property="subjectProvider" jdbcType="VARCHAR" />
+    <result column="subject_purpose_code" property="subjectPurposeCode" jdbcType="VARCHAR" />
     <result column="subject_create_time" property="subjectCreateTime" jdbcType="TIMESTAMP" />
     <result column="subject_update_time" property="subjectUpdateTime" jdbcType="TIMESTAMP" />
     <result column="subject_status" property="subjectStatus" jdbcType="CHAR" />
@@ -187,6 +200,9 @@
       </if>
       <if test="subjectProvider != null" >
         subject_provider = #{subjectProvider,jdbcType=VARCHAR}
+      </if>
+      <if test="subjectPurposeCode != null" >
+        subject_purpose_code = #{subjectPurposeCode,jdbcType=VARCHAR},
       </if>
       <if test="subjectCreateTime != null" >
         subject_create_time = #{subjectCreateTime,jdbcType=TIMESTAMP}

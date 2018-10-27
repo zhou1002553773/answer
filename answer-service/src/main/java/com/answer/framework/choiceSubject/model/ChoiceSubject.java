@@ -17,6 +17,8 @@ public class ChoiceSubject {
 
     private String subjectProvider;
 
+    private String subjectPurposeCode;
+
     private Date subjectCreateTime;
 
     private Date subjectUpdateTime;
@@ -77,6 +79,14 @@ public class ChoiceSubject {
 
     public void setSubjectProvider(String subjectProvider) {
         this.subjectProvider = subjectProvider == null ? null : subjectProvider.trim();
+    }
+
+    public String getSubjectPurposeCode() {
+        return subjectPurposeCode;
+    }
+
+    public void setSubjectPurposeCode(String subjectPurposeCode) {
+        this.subjectPurposeCode = subjectPurposeCode == null ? null : subjectPurposeCode.trim();
     }
 
     public Date getSubjectCreateTime() {
