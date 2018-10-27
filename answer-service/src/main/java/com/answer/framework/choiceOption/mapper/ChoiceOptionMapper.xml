@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.answer.framework.choiceOption.mapper.ChoiceOptionMapper" >
+  <resultMap id="BaseResultMap" type="com.answer.framework.choiceOption.model.ChoiceOption" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="option_code" property="optionCode" jdbcType="VARCHAR" />
+    <result column="option_content" property="optionContent" jdbcType="VARCHAR" />
+    <result column="subject_code" property="subjectCode" jdbcType="VARCHAR" />
+    <result column="option_score" property="optionScore" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, option_code, option_content, subject_code, option_score
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from choice_option
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from choice_option
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.answer.framework.choiceOption.model.ChoiceOption" >
+    insert into choice_option (id, option_code, option_content, 
+      subject_code, option_score)
+    values (#{id,jdbcType=BIGINT}, #{optionCode,jdbcType=VARCHAR}, #{optionContent,jdbcType=VARCHAR}, 
+      #{subjectCode,jdbcType=VARCHAR}, #{optionScore,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.answer.framework.choiceOption.model.ChoiceOption" >
+    insert into choice_option
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="optionCode != null" >
+        option_code,
+      </if>
+      <if test="optionContent != null" >
+        option_content,
+      </if>
+      <if test="subjectCode != null" >
+        subject_code,
+      </if>
+      <if test="optionScore != null" >
+        option_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="optionCode != null" >
+        #{optionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="optionContent != null" >
+        #{optionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectCode != null" >
+        #{subjectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="optionScore != null" >
+        #{optionScore,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.answer.framework.choiceOption.model.ChoiceOption" >
+    update choice_option
+    <set >
+      <if test="optionCode != null" >
+        option_code = #{optionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="optionContent != null" >
+        option_content = #{optionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectCode != null" >
+        subject_code = #{subjectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="optionScore != null" >
+        option_score = #{optionScore,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.answer.framework.choiceOption.model.ChoiceOption" >
+    update choice_option
+    set option_code = #{optionCode,jdbcType=VARCHAR},
+      option_content = #{optionContent,jdbcType=VARCHAR},
+      subject_code = #{subjectCode,jdbcType=VARCHAR},
+      option_score = #{optionScore,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.answer.framework.dictionaryInfo.mapper.DictionaryInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.answer.framework.dictionaryInfo.model.DictionaryInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="dict_type_code" property="dictTypeCode" jdbcType="VARCHAR" />
+    <result column="dict_type_name" property="dictTypeName" jdbcType="VARCHAR" />
+    <result column="dict_key_code" property="dictKeyCode" jdbcType="VARCHAR" />
+    <result column="dict_key_value" property="dictKeyValue" jdbcType="VARCHAR" />
+    <result column="dict_status" property="dictStatus" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dict_type_code, dict_type_name, dict_key_code, dict_key_value, dict_status, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dictionary_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dictionary_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.answer.framework.dictionaryInfo.model.DictionaryInfo" >
+    insert into dictionary_info (id, dict_type_code, dict_type_name, 
+      dict_key_code, dict_key_value, dict_status, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{dictTypeCode,jdbcType=VARCHAR}, #{dictTypeName,jdbcType=VARCHAR}, 
+      #{dictKeyCode,jdbcType=VARCHAR}, #{dictKeyValue,jdbcType=VARCHAR}, #{dictStatus,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.answer.framework.dictionaryInfo.model.DictionaryInfo" >
+    insert into dictionary_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dictTypeCode != null" >
+        dict_type_code,
+      </if>
+      <if test="dictTypeName != null" >
+        dict_type_name,
+      </if>
+      <if test="dictKeyCode != null" >
+        dict_key_code,
+      </if>
+      <if test="dictKeyValue != null" >
+        dict_key_value,
+      </if>
+      <if test="dictStatus != null" >
+        dict_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dictTypeCode != null" >
+        #{dictTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictTypeName != null" >
+        #{dictTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictKeyCode != null" >
+        #{dictKeyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictKeyValue != null" >
+        #{dictKeyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictStatus != null" >
+        #{dictStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.answer.framework.dictionaryInfo.model.DictionaryInfo" >
+    update dictionary_info
+    <set >
+      <if test="dictTypeCode != null" >
+        dict_type_code = #{dictTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictTypeName != null" >
+        dict_type_name = #{dictTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictKeyCode != null" >
+        dict_key_code = #{dictKeyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictKeyValue != null" >
+        dict_key_value = #{dictKeyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictStatus != null" >
+        dict_status = #{dictStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.answer.framework.dictionaryInfo.model.DictionaryInfo" >
+    update dictionary_info
+    set dict_type_code = #{dictTypeCode,jdbcType=VARCHAR},
+      dict_type_name = #{dictTypeName,jdbcType=VARCHAR},
+      dict_key_code = #{dictKeyCode,jdbcType=VARCHAR},
+      dict_key_value = #{dictKeyValue,jdbcType=VARCHAR},
+      dict_status = #{dictStatus,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listByDictTypeCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from dictionary_info
+    where dict_type_code = #{dictTypeCode,jdbcType=VARCHAR}
+  </select>
+</mapper>
