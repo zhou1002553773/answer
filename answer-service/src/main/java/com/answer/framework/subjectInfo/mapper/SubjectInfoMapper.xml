@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.answer.framework.choiceSubject.mapper.ChoiceSubjectMapper" >
-  <resultMap id="BaseResultMap" type="com.answer.framework.choiceSubject.model.ChoiceSubject" >
+<mapper namespace="com.answer.framework.subjectInfo.mapper.SubjectInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.answer.framework.subjectInfo.model.SubjectInfo" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="subject_code" property="subjectCode" jdbcType="VARCHAR" />
     <result column="subject_content" property="subjectContent" jdbcType="VARCHAR" />
@@ -10,37 +10,40 @@
     <result column="subject_level" property="subjectLevel" jdbcType="INTEGER" />
     <result column="subject_provider" property="subjectProvider" jdbcType="VARCHAR" />
     <result column="subject_purpose_code" property="subjectPurposeCode" jdbcType="VARCHAR" />
+    <result column="subject_order" property="subjectOrder" jdbcType="INTEGER" />
     <result column="subject_create_time" property="subjectCreateTime" jdbcType="TIMESTAMP" />
     <result column="subject_update_time" property="subjectUpdateTime" jdbcType="TIMESTAMP" />
     <result column="subject_status" property="subjectStatus" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, subject_code, subject_content, subject_correct, subject_type, subject_level, 
-    subject_provider, subject_purpose_code, subject_create_time, subject_update_time, 
+    subject_provider, subject_purpose_code, subject_order, subject_create_time, subject_update_time, 
     subject_status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from choice_subject
+    from subject_info
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from choice_subject
+    delete from subject_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.answer.framework.choiceSubject.model.ChoiceSubject" >
-    insert into choice_subject (id, subject_code, subject_content, 
+  <insert id="insert" parameterType="com.answer.framework.subjectInfo.model.SubjectInfo" >
+    insert into subject_info (id, subject_code, subject_content, 
       subject_correct, subject_type, subject_level, 
-      subject_provider, subject_purpose_code, subject_create_time, 
-      subject_update_time, subject_status)
+      subject_provider, subject_purpose_code, subject_order, 
+      subject_create_time, subject_update_time, 
+      subject_status)
     values (#{id,jdbcType=BIGINT}, #{subjectCode,jdbcType=VARCHAR}, #{subjectContent,jdbcType=VARCHAR}, 
       #{subjectCorrect,jdbcType=VARCHAR}, #{subjectType,jdbcType=VARCHAR}, #{subjectLevel,jdbcType=INTEGER}, 
-      #{subjectProvider,jdbcType=VARCHAR}, #{subjectPurposeCode,jdbcType=VARCHAR}, #{subjectCreateTime,jdbcType=TIMESTAMP}, 
-      #{subjectUpdateTime,jdbcType=TIMESTAMP}, #{subjectStatus,jdbcType=CHAR})
+      #{subjectProvider,jdbcType=VARCHAR}, #{subjectPurposeCode,jdbcType=VARCHAR}, #{subjectOrder,jdbcType=INTEGER}, 
+      #{subjectCreateTime,jdbcType=TIMESTAMP}, #{subjectUpdateTime,jdbcType=TIMESTAMP}, 
+      #{subjectStatus,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.answer.framework.choiceSubject.model.ChoiceSubject" >
-    insert into choice_subject
+  <insert id="insertSelective" parameterType="com.answer.framework.subjectInfo.model.SubjectInfo" >
+    insert into subject_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -65,6 +68,9 @@
       </if>
       <if test="subjectPurposeCode != null" >
         subject_purpose_code,
+      </if>
+      <if test="subjectOrder != null" >
+        subject_order,
       </if>
       <if test="subjectCreateTime != null" >
         subject_create_time,
@@ -101,6 +107,9 @@
       <if test="subjectPurposeCode != null" >
         #{subjectPurposeCode,jdbcType=VARCHAR},
       </if>
+      <if test="subjectOrder != null" >
+        #{subjectOrder,jdbcType=INTEGER},
+      </if>
       <if test="subjectCreateTime != null" >
         #{subjectCreateTime,jdbcType=TIMESTAMP},
       </if>
@@ -112,8 +121,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.answer.framework.choiceSubject.model.ChoiceSubject" >
-    update choice_subject
+  <update id="updateByPrimaryKeySelective" parameterType="com.answer.framework.subjectInfo.model.SubjectInfo" >
+    update subject_info
     <set >
       <if test="subjectCode != null" >
         subject_code = #{subjectCode,jdbcType=VARCHAR},
@@ -136,6 +145,9 @@
       <if test="subjectPurposeCode != null" >
         subject_purpose_code = #{subjectPurposeCode,jdbcType=VARCHAR},
       </if>
+      <if test="subjectOrder != null" >
+        subject_order = #{subjectOrder,jdbcType=INTEGER},
+      </if>
       <if test="subjectCreateTime != null" >
         subject_create_time = #{subjectCreateTime,jdbcType=TIMESTAMP},
       </if>
@@ -148,8 +160,8 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.answer.framework.choiceSubject.model.ChoiceSubject" >
-    update choice_subject
+  <update id="updateByPrimaryKey" parameterType="com.answer.framework.subjectInfo.model.SubjectInfo" >
+    update subject_info
     set subject_code = #{subjectCode,jdbcType=VARCHAR},
       subject_content = #{subjectContent,jdbcType=VARCHAR},
       subject_correct = #{subjectCorrect,jdbcType=VARCHAR},
@@ -157,13 +169,14 @@
       subject_level = #{subjectLevel,jdbcType=INTEGER},
       subject_provider = #{subjectProvider,jdbcType=VARCHAR},
       subject_purpose_code = #{subjectPurposeCode,jdbcType=VARCHAR},
+      subject_order = #{subjectOrder,jdbcType=INTEGER},
       subject_create_time = #{subjectCreateTime,jdbcType=TIMESTAMP},
       subject_update_time = #{subjectUpdateTime,jdbcType=TIMESTAMP},
       subject_status = #{subjectStatus,jdbcType=CHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-  <resultMap id="ChoiceSubjectRespMap" type="com.answer.framework.choiceSubject.form.ChoiceSubjectResp">
+  <resultMap id="SubjectInfoRespMap" type="com.answer.framework.subjectInfo.form.SubjectInfoReq">
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="subject_code" property="subjectCode" jdbcType="VARCHAR" />
     <result column="subject_content" property="subjectContent" jdbcType="VARCHAR" />
@@ -172,48 +185,95 @@
     <result column="subject_level" property="subjectLevel" jdbcType="INTEGER" />
     <result column="subject_provider" property="subjectProvider" jdbcType="VARCHAR" />
     <result column="subject_purpose_code" property="subjectPurposeCode" jdbcType="VARCHAR" />
+    <result column="subject_order" property="subjectOrder" jdbcType="INTEGER" />
     <result column="subject_create_time" property="subjectCreateTime" jdbcType="TIMESTAMP" />
     <result column="subject_update_time" property="subjectUpdateTime" jdbcType="TIMESTAMP" />
     <result column="subject_status" property="subjectStatus" jdbcType="CHAR" />
     <result column="subject_provider_name" property="subjectProviderName" jdbcType="VARCHAR" />
   </resultMap>
 
-  <select id="listByObj" parameterType="com.answer.framework.choiceSubject.form.ChoiceSubjectReq" resultMap="ChoiceSubjectRespMap">
-    select cs.*,ui.user_nickname subject_provider_name
-    from choice_subject cs
-    left join user_info ui on cs.subject_provider = ui.user_code
-    <where>
-      <if test="subjectCode != null" >
-        subject_code = #{subjectCode,jdbcType=VARCHAR}
-      </if>
+  <update id="updateBySubjectCode" parameterType="com.answer.framework.subjectInfo.model.SubjectInfo">
+    update subject_info
+    <set>
       <if test="subjectContent != null" >
-        subject_content = #{subjectContent,jdbcType=VARCHAR}
+        subject_content = #{subjectContent,jdbcType=VARCHAR},
       </if>
       <if test="subjectCorrect != null" >
-        subject_correct = #{subjectCorrect,jdbcType=VARCHAR}
+        subject_correct = #{subjectCorrect,jdbcType=VARCHAR},
       </if>
       <if test="subjectType != null" >
-        subject_type = #{subjectType,jdbcType=VARCHAR}
+        subject_type = #{subjectType,jdbcType=VARCHAR},
       </if>
       <if test="subjectLevel != null" >
-        subject_level = #{subjectLevel,jdbcType=INTEGER}
+        subject_level = #{subjectLevel,jdbcType=INTEGER},
       </if>
       <if test="subjectProvider != null" >
-        subject_provider = #{subjectProvider,jdbcType=VARCHAR}
+        subject_provider = #{subjectProvider,jdbcType=VARCHAR},
       </if>
       <if test="subjectPurposeCode != null" >
         subject_purpose_code = #{subjectPurposeCode,jdbcType=VARCHAR},
       </if>
+      <if test="subjectOrder != null" >
+        subject_order = #{subjectOrder,jdbcType=INTEGER},
+      </if>
       <if test="subjectCreateTime != null" >
-        subject_create_time = #{subjectCreateTime,jdbcType=TIMESTAMP}
+        subject_create_time = #{subjectCreateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="subjectUpdateTime != null" >
-        subject_update_time = #{subjectUpdateTime,jdbcType=TIMESTAMP}
+        subject_update_time = #{subjectUpdateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="subjectStatus != null" >
-        subject_status = #{subjectStatus,jdbcType=CHAR}
+        subject_status = #{subjectStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where subject_code = #{subjectCode,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySubjectCode" parameterType="java.lang.String" resultMap="SubjectInfoRespMap">
+    select si.*,ui.user_nickname subject_provider_name
+    from subject_info si
+    left join user_info ui on ui.user_code = si.subject_provider
+    where subject_code = #{subjectCode,jdbcType=VARCHAR}
+  </select>
+
+  <select id="listByObj" parameterType="com.answer.framework.subjectInfo.form.SubjectInfoReq" resultMap="SubjectInfoRespMap">
+    select si.*,ui.user_nickname subject_provider_name
+    from subject_info si
+    left join user_info ui on ui.user_code = si.subject_provider
+    <where>
+      <if test="subjectCode != null" >
+        and subject_code = #{subjectCode,jdbcType=VARCHAR}
+      </if>
+      <if test="subjectContent != null" >
+        and subject_content = #{subjectContent,jdbcType=VARCHAR}
+      </if>
+      <if test="subjectCorrect != null" >
+        and subject_correct = #{subjectCorrect,jdbcType=VARCHAR}
+      </if>
+      <if test="subjectType != null" >
+        and subject_type = #{subjectType,jdbcType=VARCHAR}
+      </if>
+      <if test="subjectLevel != null" >
+        and subject_level = #{subjectLevel,jdbcType=INTEGER}
+      </if>
+      <if test="subjectProvider != null" >
+        and subject_provider = #{subjectProvider,jdbcType=VARCHAR}
+      </if>
+      <if test="subjectPurposeCode != null" >
+        and subject_purpose_code = #{subjectPurposeCode,jdbcType=VARCHAR}
+      </if>
+      <if test="subjectOrder != null" >
+        and subject_order = #{subjectOrder,jdbcType=INTEGER}
+      </if>
+      <if test="subjectCreateTime != null" >
+        and subject_create_time = #{subjectCreateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="subjectUpdateTime != null" >
+        and subject_update_time = #{subjectUpdateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="subjectStatus != null" >
+        and subject_status = #{subjectStatus,jdbcType=CHAR}
       </if>
     </where>
-    order by subject_create_time desc
   </select>
 </mapper>

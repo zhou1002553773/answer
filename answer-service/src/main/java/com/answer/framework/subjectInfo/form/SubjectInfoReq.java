@@ -1,14 +1,14 @@
-package com.answer.framework.choiceSubject.form;
+package com.answer.framework.subjectInfo.form;
 
-import com.answer.framework.choiceSubject.model.ChoiceSubject;
+import com.answer.framework.subjectInfo.model.SubjectInfo;
 
-public class ChoiceSubjectReq extends ChoiceSubject {
+public class SubjectInfoReq extends SubjectInfo {
 
     private Integer pageNumber;
 
     private Integer pageSize;
 
-    public ChoiceSubjectReq() {
+    public SubjectInfoReq() {
     }
 
     public Integer getPageNumber() {

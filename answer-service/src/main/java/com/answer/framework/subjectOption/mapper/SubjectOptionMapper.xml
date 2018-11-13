@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.answer.framework.choiceOption.mapper.ChoiceOptionMapper" >
-  <resultMap id="BaseResultMap" type="com.answer.framework.choiceOption.model.ChoiceOption" >
+<mapper namespace="com.answer.framework.subjectOption.mapper.SubjectOptionMapper" >
+  <resultMap id="BaseResultMap" type="com.answer.framework.subjectOption.model.SubjectOption" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="option_code" property="optionCode" jdbcType="VARCHAR" />
     <result column="option_content" property="optionContent" jdbcType="VARCHAR" />
@@ -14,21 +14,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from choice_option
+    from subject_option
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from choice_option
+    delete from subject_option
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.answer.framework.choiceOption.model.ChoiceOption" >
-    insert into choice_option (id, option_code, option_content, 
+  <insert id="insert" parameterType="com.answer.framework.subjectOption.model.SubjectOption" >
+    insert into subject_option (id, option_code, option_content, 
       subject_code, option_score)
     values (#{id,jdbcType=BIGINT}, #{optionCode,jdbcType=VARCHAR}, #{optionContent,jdbcType=VARCHAR}, 
       #{subjectCode,jdbcType=VARCHAR}, #{optionScore,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.answer.framework.choiceOption.model.ChoiceOption" >
-    insert into choice_option
+  <insert id="insertSelective" parameterType="com.answer.framework.subjectOption.model.SubjectOption" >
+    insert into subject_option
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -64,8 +64,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.answer.framework.choiceOption.model.ChoiceOption" >
-    update choice_option
+  <update id="updateByPrimaryKeySelective" parameterType="com.answer.framework.subjectOption.model.SubjectOption" >
+    update subject_option
     <set >
       <if test="optionCode != null" >
         option_code = #{optionCode,jdbcType=VARCHAR},
@@ -82,8 +82,8 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.answer.framework.choiceOption.model.ChoiceOption" >
-    update choice_option
+  <update id="updateByPrimaryKey" parameterType="com.answer.framework.subjectOption.model.SubjectOption" >
+    update subject_option
     set option_code = #{optionCode,jdbcType=VARCHAR},
       option_content = #{optionContent,jdbcType=VARCHAR},
       subject_code = #{subjectCode,jdbcType=VARCHAR},

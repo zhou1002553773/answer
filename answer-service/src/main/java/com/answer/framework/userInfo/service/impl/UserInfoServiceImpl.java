@@ -1,5 +1,6 @@
 package com.answer.framework.userInfo.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.answer.framework.common.config.ConfigConstant;
 import com.answer.framework.userInfo.form.UserInfoResp;
 import com.answer.framework.userInfo.mapper.UserInfoMapper;
@@ -7,13 +8,19 @@ import com.answer.framework.userInfo.model.UserInfo;
 import com.answer.framework.userInfo.service.UserInfoService;
 import com.answer.framework.util.MD5Utils;
 import com.answer.framework.util.SerialNoUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserInfoServiceImpl.class);
 
     @Resource
     private UserInfoMapper userInfoMapper;
@@ -59,5 +66,4 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfo.setUserLoginPassword(pass);
         return userInfoMapper.selectByAccount(userInfo);
     }
-
 }

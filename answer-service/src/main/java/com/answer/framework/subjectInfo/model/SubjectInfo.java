@@ -1,8 +1,8 @@
-package com.answer.framework.choiceSubject.model;
+package com.answer.framework.subjectInfo.model;
 
 import java.util.Date;
 
-public class ChoiceSubject {
+public class SubjectInfo {
     private Long id;
 
     private String subjectCode;
@@ -18,6 +18,8 @@ public class ChoiceSubject {
     private String subjectProvider;
 
     private String subjectPurposeCode;
+
+    private Integer subjectOrder;
 
     private Date subjectCreateTime;
 
@@ -87,6 +89,14 @@ public class ChoiceSubject {
 
     public void setSubjectPurposeCode(String subjectPurposeCode) {
         this.subjectPurposeCode = subjectPurposeCode == null ? null : subjectPurposeCode.trim();
+    }
+
+    public Integer getSubjectOrder() {
+        return subjectOrder;
+    }
+
+    public void setSubjectOrder(Integer subjectOrder) {
+        this.subjectOrder = subjectOrder;
     }
 
     public Date getSubjectCreateTime() {

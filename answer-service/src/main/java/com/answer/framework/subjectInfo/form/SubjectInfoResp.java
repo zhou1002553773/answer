@@ -1,12 +1,12 @@
-package com.answer.framework.choiceSubject.form;
+package com.answer.framework.subjectInfo.form;
 
-import com.answer.framework.choiceSubject.model.ChoiceSubject;
+import com.answer.framework.subjectInfo.model.SubjectInfo;
 
-public class ChoiceSubjectResp extends ChoiceSubject {
+public class SubjectInfoResp extends SubjectInfo {
 
     private String subjectProviderName;
 
-    public ChoiceSubjectResp() {
+    public SubjectInfoResp() {
     }
 
     public String getSubjectProviderName() {

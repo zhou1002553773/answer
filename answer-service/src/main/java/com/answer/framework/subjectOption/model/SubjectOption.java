@@ -1,6 +1,6 @@
-package com.answer.framework.choiceOption.model;
+package com.answer.framework.subjectOption.model;
 
-public class ChoiceOption {
+public class SubjectOption {
     private Long id;
 
     private String optionCode;
